@@ -1,0 +1,27 @@
+{
+  "name": "partiosanomalaitebackend",
+  "version": "1.0.0",
+  "description": "Backend for parsa",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sainigma/partiosanomalaiteBackend.git"
+  },
+  "author": "Kari Suominen",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/sainigma/partiosanomalaiteBackend/issues"
+  },
+  "homepage": "https://github.com/sainigma/partiosanomalaiteBackend#readme",
+  "dependencies": {
+    "ws": "^7.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}
