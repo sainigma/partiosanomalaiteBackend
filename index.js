@@ -37,7 +37,8 @@ const broadcastMessage = (transmission,sender) => {
     let message = {
       type: 'message',
       content,
-      checksum
+      checksum,
+      sender:sender.settings.callsign
     }
     let burst = {
       type: 'burst'
@@ -52,15 +53,19 @@ const broadcastMessage = (transmission,sender) => {
     sockets.clients.forEach( socket => {
       if( socket.settings.frequency === frequency ){
         if( socket === sender ){
+          console.log(transmitOk)
           socket.send(transmitOk)
         }else if( socket.settings.callsign === destination || socket.settings.subgroup === destination || socket.settings.group === destination ){
+          console.log(message)
           socket.send(message)
         }else{
-          console.log(socket.callsign)
           socket.send(burst)
+          console.log(socket.callsign)
         }
       }
     })
+  }else{
+    console.log('ongelmia')
   }
 }
 
