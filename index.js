@@ -1,6 +1,22 @@
-const WebSocket = require('ws');
+const WebSocket = require('ws')
+const fs = require('fs')
+const express = require('express')
+const https = require('https')
 
-const sockets = new WebSocket.Server({ port: 8080 });
+let config = fs.readFileSync('./.env')
+config = JSON.parse(config)
+
+const credentials = {
+  key: fs.readFileSync(config.privateKey),
+  cert: fs.readFileSync(config.certificate)
+}
+
+const httpsServer = https.createServer(credentials, express())
+httpsServer.listen( config.port )
+
+const sockets = new WebSocket.Server({
+  server: httpsServer
+})
 
 const transmitToSocket = (socket,type,message) => {
   let transmission = {
